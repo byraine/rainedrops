@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="A 25-second, hand-drawn UFO animation tracing a career from technology to education, film, photography, creative direction, and AI in arts and design.">
+  <title>A Curious Trajectory — A Career in Motion</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="experience">
+    <header class="masthead" aria-label="Animation title">
+      <span class="eyebrow">A SMALL EXPERIMENT IN CONNECTION</span>
+      <span class="duration">25 SEC <span aria-hidden="true">↗</span></span>
+    </header>
+
+    <section class="animation" aria-label="An alien in a flying saucer collects sketches representing a creative career">
+      <div class="paper" id="paper">
+        <svg class="sketch" viewBox="100 35 700 610" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="svg-title svg-desc">
+          <title id="svg-title">The little alien who collected a career</title>
+          <desc id="svg-desc">A whimsical black pencil sketch of a UFO. Its tractor beam lifts symbols of work in tech, education, writing, film, photography, creative direction, and studies at Elisava.</desc>
+          <defs>
+            <filter id="pencil-texture" x="-8%" y="-8%" width="116%" height="116%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.038" numOctaves="2" seed="6" result="noise" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.15" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+          </defs>
+
+          <!-- The tractor beam uses pencil contours, not a digital neon gradient. -->
+          <g class="beam" aria-hidden="true" filter="url(#pencil-texture)">
+            <path class="beam-soft" d="M388 300 C386 366 359 478 327 592" />
+            <path class="beam-soft" d="M510 276 C540 369 562 477 598 592" />
+            <path class="beam-ghost" d="M405 308 C405 396 389 477 376 561" />
+            <path class="beam-ghost" d="M487 293 C509 380 520 480 538 557" />
+          </g>
+
+          <g class="sketched-stars" filter="url(#pencil-texture)" aria-hidden="true">
+            <path class="star star-left" d="M205 250 l9 -3 -2 -12 7 8 10 -6 -5 11 8 6 -12 0 -5 12 -3 -12 -10 -4 z" />
+            <path class="star star-right" d="M652 136 l3 -10 5 9 11 -1 -7 8 5 9 -10 -4 -8 7 2 -11 -9 -6 z" />
+            <path class="small-fleck" d="M251 182 l9 -9 m-5 0 7 8" />
+            <path class="small-fleck" d="M681 294 l8 -8 m-5 -1 9 9" />
+          </g>
+
+          <!-- The objects are dynamically drawn here. All paths remain vector, editable SVG. -->
+          <g transform="translate(456 521)" aria-hidden="true">
+            <g id="career-object"></g>
+          </g>
+
+          <!-- UFO based on the user's deliberately imperfect, one-line doodle reference. -->
+          <g class="ufo" filter="url(#pencil-texture)" aria-hidden="true">
+            <g class="pencil-stroke">
+              <path d="M316 250 C311 203 341 144 385 119 C411 104 434 100 452 107 C496 123 513 173 514 230" />
+              <path class="light-mark" d="M334 233 C334 197 361 151 388 136" />
+              <path class="light-mark" d="M337 219 l7 -13 m15 -28 l6 -7" />
+
+              <!-- The alien peeks over the rim. -->
+              <path d="M395 244 L396 194 C398 180 410 169 419 170 C429 168 434 160 444 169 C457 178 455 193 442 204 L436 231" />
+              <path class="alien-eye" d="M405 187 q6 0 11 9 q-10 0 -11 -9" />
+              <path class="alien-eye" d="M439 183 q-1 10 -10 13 q-1 -9 10 -13" />
+              <path class="alien-mouth" d="M421 210 q3 2 6 0" />
+
+              <!-- Off-kilter saucer, like the supplied hand-drawn image. -->
+              <path d="M232 325 C265 284 349 249 470 220 C555 200 626 199 671 212 C651 234 556 263 447 288 C339 315 264 348 229 344 C220 342 220 335 232 325 Z" />
+              <path class="fine-outline" d="M255 324 C347 282 519 231 626 219" />
+              <path d="M377 278 C418 268 476 257 510 252 C504 264 453 280 392 293 Z" />
+              <path class="fine-outline" d="M389 281 l-7 11 m18 -15 -9 14 m19 -16 -10 14 m19 -16 -9 14 m19 -16 -9 14 m19 -16 -9 14 m19 -16 -9 13 m18 -16 -8 11 m17 -15 -6 9" />
+            </g>
+          </g>
+        </svg>
+
+        <div class="phase" id="phase" aria-live="polite" aria-atomic="true">
+          <span class="phase-index" id="phase-index">00 / 07</span>
+          <span class="phase-title" id="phase-title">A CURIOUS TRAJECTORY</span>
+        </div>
+      </div>
+
+      <div class="closing" id="closing" aria-live="off">
+        <p class="closing-copy" id="closing-copy"></p>
+        <p class="closing-signoff" id="closing-signoff">ELISAVA <span aria-hidden="true">✳</span> BARCELONA</p>
+      </div>
+
+      <div class="footer-controls">
+        <div class="play-progress" role="progressbar" aria-label="Animation progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track">
+          <span id="progress-fill"></span>
+        </div>
+        <div class="footer-row">
+          <span class="footnote">PENCIL SKETCHES / MANY DETOURS / ONE DIRECTION</span>
+          <button type="button" id="replay" class="replay" aria-label="Replay 25-second animation">
+            <span aria-hidden="true">↺</span> REPLAY
+          </button>
+        </div>
+      </div>
+      <p class="sr-only" id="motion-summary">A UFO collects seven career milestones: Cox Automotive, bilingual education, writing, film, photography, creative direction, and Elisava.</p>
+    </section>
+  </main>
+</body>
+</html>
