@@ -347,3 +347,101 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .planet, .black-hole { animation: none !important; }
 }
+
+
+/* ===== V4 — OPEN-SPACE FLIGHT / INTERACTIVE WORMHOLES ===== */
+html,body { width:100%; height:100%; overflow:hidden; }
+body { margin:0; background:#05050b; }
+.experience { position:fixed; inset:0; max-width:none; margin:0; padding:0; }
+.masthead { position:absolute; z-index:30; top:0; left:0; right:0; padding:22px clamp(20px,3vw,48px); margin:0; pointer-events:none; color:rgba(252,248,244,.83); }
+.animation { position:absolute; inset:0; min-height:0; width:100%; height:100vh; height:100dvh; border:0; border-radius:0; box-shadow:none; overflow:hidden; touch-action:none; cursor:crosshair; isolation:isolate; background:radial-gradient(ellipse at 22% 22%,#27214480,transparent 50%),radial-gradient(ellipse at 78% 70%,#0b4a5980,transparent 52%),#04040b; transition:background 1s ease; }
+.animation[data-sector="0"] { --color1:64,54,121; --color2:17,90,109; --color3:181,145,255; --hole1:#bd76ff; --hole2:#53bfe7; }
+.animation[data-sector="1"] { --color1:112,37,143; --color2:43,26,111; --color3:252,143,224; --hole1:#ec83da; --hole2:#8c7bf6; }
+.animation[data-sector="2"] { --color1:19,73,121; --color2:6,107,110; --color3:92,219,238; --hole1:#76e5ff; --hole2:#7b8ff4; }
+.animation[data-sector="3"] { --color1:115,42,58; --color2:103,61,28; --color3:255,186,129; --hole1:#f19b85; --hole2:#dba9fb; }
+.animation[data-sector="4"] { --color1:65,38,122; --color2:23,114,93; --color3:164,247,188; --hole1:#bfc2ff; --hole2:#82f4bd; }
+.cosmos { z-index:0; opacity:.9; background: radial-gradient(ellipse at 20% 24%,rgba(var(--color1),.5),transparent 43%),radial-gradient(ellipse at 78% 75%,rgba(var(--color2),.38),transparent 47%); transition:background 1s ease; }
+.cosmos .black-hole { display:none; }
+.sector-glow { position:absolute; z-index:0; inset:-25%; pointer-events:none; background:radial-gradient(ellipse at 40% 40%,rgba(var(--color1),.3),transparent 55%),radial-gradient(ellipse at 66% 66%,rgba(var(--color2),.33),transparent 50%); animation:glow-drift 15s ease-in-out infinite alternate; transition:filter .8s; }
+@keyframes glow-drift { from{transform:translate3d(-6%,-5%,0) rotate(-6deg)} to{transform:translate3d(7%,5%,0) rotate(7deg)} }
+.warp-stars { position:absolute; inset:0; z-index:1; width:100%;height:100%;pointer-events:none; }
+.paper { position:absolute; z-index:6; inset:0; width:100%; height:100%; margin:0; padding:0; overflow:visible; pointer-events:none; }
+.flight-rig { position:absolute; width:clamp(365px,47vw,750px); aspect-ratio:760 / 870; left:50%; top:50%; transform:translate3d(-50%,-50%,0); transform-origin:50% 45%; will-change:transform,opacity; pointer-events:none; }
+.sketch { display:block; width:100%;height:100%;max-height:none; overflow:visible; }
+.pencil-stroke path,.beam path,.sketched-stars path { stroke:#f7f1e9; }
+#career-object,.career-symbol { opacity:1;visibility:visible; }
+#career-object .career-symbol { opacity:1; visibility:visible; }
+#career-object path,#career-object circle { stroke:#fff7e9;stroke-width:3.9; }
+#career-object text { fill:#fff7e9; }
+.beam-soft { stroke:rgba(194,183,255,.68) !important;stroke-width:3.8 !important; }
+.beam-ghost { stroke:rgba(229,224,255,.28) !important;stroke-width:2 !important; }
+.planet { filter:saturate(1.1); }
+.planet-a { left:10%;top:9%;width:clamp(64px,9vw,160px);height:auto;aspect-ratio:1; }
+.planet-a::after { top:39%;left:-24%;width:148%;height:25%; }
+.planet-b {right:11%;top:9%;width:clamp(45px,6vw,100px);height:auto;aspect-ratio:1;}
+.planet-c { right:22%;bottom:10%;width:clamp(25px,4vw,60px);height:auto;aspect-ratio:1;}
+.portal { appearance:none; position:absolute; z-index:5; display:block; width:clamp(104px,13vw,185px); aspect-ratio:1; border:0; border-radius:50%; padding:0; background:transparent; cursor:pointer; isolation:isolate; --ring:#b58dff; transition:transform .22s ease; }
+.portal-one { left:12%;top:44%;transform:translate(-50%,-50%);--ring:var(--hole1); }
+.portal-two { left:84%;top:66%;transform:translate(-50%,-50%);--ring:var(--hole2); }
+.portal:hover,.portal:focus-visible { transform:translate(-50%,-50%) scale(1.11); outline:none; }
+.portal:focus-visible .portal-swirl { outline:2px solid white;outline-offset:12px; }
+.portal::before { content:"";position:absolute;inset:-19%;border-radius:50%;background:radial-gradient(circle, transparent 33%, color-mix(in srgb,var(--ring),transparent 75%) 47%,transparent 69%);filter:blur(12px); animation:halo-breathe 3s ease-in-out infinite; }
+.portal-swirl { position:absolute;inset:3%;border-radius:50%;background:
+  radial-gradient(circle at center,#02020a 0 26%,transparent 34%),
+  repeating-conic-gradient(from 15deg,transparent 0deg 12deg,color-mix(in srgb,var(--ring),transparent 15%) 14deg 25deg,transparent 29deg 40deg),
+  conic-gradient(from 270deg,#181022,var(--ring),#070712,#b8b0e7,#09030e,#181022);
+  filter:drop-shadow(0 0 14px color-mix(in srgb,var(--ring),transparent 50%));animation:portal-spin 3.4s linear infinite; }
+.portal-center { position:absolute;inset:30%;border-radius:50%;background:radial-gradient(circle,#000 48%,#09050c 57%,rgba(255,255,255,.2) 72%,transparent 82%);box-shadow:0 0 0 2px color-mix(in srgb,var(--ring),transparent 30%),0 0 16px #000 inset; }
+.portal-label { position:absolute;left:50%;top:112%;transform:translateX(-50%);font:10px "Courier New",monospace;letter-spacing:.19em;color:rgba(255,255,255,.82);white-space:nowrap;text-shadow:0 1px 14px #000; }
+@keyframes portal-spin{to{transform:rotate(360deg)}}
+@keyframes halo-breathe{50%{transform:scale(1.12);opacity:.6}}
+.sector-indicator { position:absolute;top:85px;left:clamp(20px,3vw,48px);z-index:20;color:rgba(255,255,255,.75);font:11px "Courier New",monospace;letter-spacing:.18em;pointer-events:none; }
+.sector-indicator span { opacity:.5;margin:0 9px; }
+.flight-hint {position:absolute;z-index:20;left:50%;top:81px;transform:translateX(-50%);font:10px "Courier New",monospace;letter-spacing:.09em;color:rgba(255,255,255,.65);text-align:center;white-space:nowrap;pointer-events:none;}
+.flight-hint span{color:var(--hole1);margin:0 7px;}
+.warp-message {position:absolute;z-index:23;top:20%;left:0;right:0;text-align:center;font:clamp(12px,1.5vw,21px) "Courier New",monospace;letter-spacing:.27em;color:white;opacity:0;pointer-events:none;text-shadow:0 0 30px var(--hole1);transition:opacity .18s;}
+.warp-message.visible{opacity:1;}
+.wormhole-transition {position:absolute;z-index:13;inset:0;pointer-events:none;opacity:0;overflow:hidden;mix-blend-mode:screen; }
+.warp-rings {position:absolute;left:var(--warp-x,50%);top:var(--warp-y,50%);width:200vmax;height:200vmax;transform:translate(-50%,-50%) scale(.04) rotate(0);border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 3.5%,rgba(var(--color3),.2) 4%,transparent 5.3%,transparent 7%),conic-gradient(from 10deg,transparent,rgba(var(--color3),.27),transparent,rgba(247,249,255,.28),transparent);filter:blur(3px);}
+.animation.is-warping .wormhole-transition{opacity:1;}
+.animation.is-warping .warp-rings{animation:wormhole-vortex 1.65s ease-in-out both;}
+@keyframes wormhole-vortex{0%{transform:translate(-50%,-50%) scale(.035) rotate(0);opacity:.4}48%{transform:translate(-50%,-50%) scale(.6) rotate(420deg);opacity:1}100%{transform:translate(-50%,-50%) scale(.05) rotate(830deg);opacity:0}}
+.phase {position:absolute;left:clamp(20px,3vw,48px);bottom:106px;right:auto;max-width:min(480px,60vw);padding:0;margin:0;display:flex;justify-content:flex-start;text-align:left;gap:14px;font-size:12px;text-shadow:0 2px 15px black;}
+.phase-index {color:#b7b0e8;opacity:1;}
+.phase-title {color:#fff;}
+.closing {position:absolute;z-index:20;bottom:103px;left:50%;width:min(700px,calc(100% - 40px));padding:18px 22px;margin:0;max-width:none;min-height:0;transform:translate(-50%,13px);text-align:center;background:rgba(5,5,15,.69);border:1px solid rgba(255,255,255,.11);border-radius:12px;backdrop-filter:blur(8px);pointer-events:none; }
+.closing.visible {transform:translate(-50%,0);}
+.closing-copy{margin:0;font-size:clamp(12px,1.45vw,16px);line-height:1.55;}
+.closing-signoff {margin:12px 0 0;}
+.footer-controls {position:absolute;left:0;right:0;bottom:0;max-width:none;padding:0 clamp(20px,3vw,48px) 24px;z-index:25;pointer-events:none;}
+.footer-row {margin-top:12px;display:flex;flex-direction:row;align-items:center;gap:12px;}
+.footer-controls button {pointer-events:auto;}
+.play-progress {height:3px;margin:0;background:rgba(255,255,255,.17); }
+.footnote { font-size:9px;letter-spacing:.12em;max-width:none; }
+.replay {font-size:11px;pointer-events:auto;}
+@media (max-width:750px) {
+ .masthead {padding:15px 15px;font-size:9px;}
+ .duration{display:none;}
+ .animation{height:100dvh;}
+ .flight-rig{width:clamp(355px,86vw,600px);}
+ .sector-indicator {top:54px;left:15px;font-size:9px;}
+ .flight-hint {top:84px;left:15px;right:15px;transform:none;white-space:normal;line-height:1.55;font-size:9px;}
+ .portal {width:clamp(86px,23vw,136px);}
+ .portal-one {left:18%;top:34%;}
+ .portal-two {left:80%;top:67%;}
+ .portal-label{font-size:8px;}
+ .phase{left:15px;bottom:90px;font-size:10px;max-width:85vw;gap:8px;}
+ .closing{bottom:90px;width:calc(100% - 28px);padding:11px 12px;}
+ .closing-copy{font-size:12px;line-height:1.4;}
+ .closing-signoff{font-size:9px;margin:7px 0 0;}
+ .footer-controls{padding:0 14px 15px;}
+ .footer-row{margin-top:10px;}
+ .footnote{font-size:8px;max-width:65%;line-height:1.4;}
+ .replay{padding:7px 10px;font-size:9px;}
+ .planet-a{left:3%;top:15%;}
+ .planet-b{right:5%;top:8%;}
+}
+@media (prefers-reduced-motion:reduce) {
+ .portal-swirl,.sector-glow,.portal::before,.animation.is-warping .warp-rings,.planet{animation:none!important;}
+ .warp-message{transition:none;}
+}
