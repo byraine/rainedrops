@@ -1,51 +1,119 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#05050c">
-  <meta name="description" content="A 25-second, hand-drawn UFO animation tracing a career from technology to education, film, photography, creative direction, and AI in arts and design.">
-  <title>A Curious Trajectory — A Career in Motion</title>
-  <link rel="stylesheet" href="styles.css?v=4">
-  <script src="script.js?v=4" defer></script>
-</head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#05050c">
+<meta name="description" content="An interactive hand-drawn UFO explores a living galaxy and seven creative career chapters.">
+<title>A Curious Trajectory — An Interactive Career in Space</title>
+<style>
+:root{--ink:#f7f0e6;--mute:rgba(247,240,230,.68);--nebula1:81,57,137;--nebula2:40,119,137;--portal1:#c88ff7;--portal2:#79d8fa}
+*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#05050c}
+body{color:var(--ink);font-family:"Courier New",Courier,monospace}
+button{font-family:inherit}
+.universe{position:fixed;inset:0;height:100vh;height:100dvh;overflow:hidden;isolation:isolate;touch-action:none;cursor:crosshair;background:#04040a}
+.universe[data-sector="1"]{--nebula1:146,39,124;--nebula2:59,37,117;--portal1:#ffa5df;--portal2:#b39dff}
+.universe[data-sector="2"]{--nebula1:15,90,150;--nebula2:12,133,120;--portal1:#83e9f9;--portal2:#83a1fa}
+.universe[data-sector="3"]{--nebula1:166,65,65;--nebula2:146,94,42;--portal1:#ffb28c;--portal2:#e6aaf6}
+.universe[data-sector="4"]{--nebula1:48,112,88;--nebula2:79,58,149;--portal1:#a1ffc8;--portal2:#ada5ff}
+.space-nebula{position:absolute;inset:-30%;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 27% 30%,rgba(var(--nebula1),.54),transparent 38%),radial-gradient(ellipse at 73% 74%,rgba(var(--nebula2),.5),transparent 42%),radial-gradient(ellipse at 53% 45%,rgba(96,48,126,.2),transparent 43%);animation:nebulaDrift 14s ease-in-out infinite alternate}
+.space-nebula::after{content:"";position:absolute;inset:10%;background:radial-gradient(ellipse at 60% 45%,rgba(201,198,255,.055),transparent 40%);filter:blur(16px)}
+@keyframes nebulaDrift{from{transform:translate(-5%,-3%) rotate(-5deg)}to{transform:translate(4%,5%) rotate(7deg)}}
+#starfield{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.planet{position:absolute;border-radius:50%;z-index:2;pointer-events:none;box-shadow:0 0 40px #ffffff15, inset -13px -10px 18px #0009;transition:top 1.2s,left 1.2s,right 1.2s,bottom 1.2s,filter 1.2s}
+.planet-a{width:clamp(80px,10vw,170px);aspect-ratio:1;top:11%;left:8%;background:radial-gradient(circle at 30% 30%,#d6d0ff,#8478b8 50%,#231d49 90%)}
+.planet-a::after{content:"";position:absolute;left:-20%;top:37%;width:140%;height:25%;border:2px solid #bcaefb88;border-radius:50%;transform:rotate(-16deg)}
+.planet-b{width:clamp(36px,6vw,98px);aspect-ratio:1;top:12%;right:12%;background:radial-gradient(circle at 30% 30%,#fff3ce,#cf8f59 48%,#4f2a2f 94%)}
+.planet-c{width:clamp(35px,4vw,66px);aspect-ratio:1;bottom:12%;left:32%;background:radial-gradient(circle at 30% 30%,#c0f8fa,#288ca1 55%,#112746)}
+.universe[data-sector="1"] .planet-a{top:70%;left:67%;filter:hue-rotate(80deg)}
+.universe[data-sector="1"] .planet-b{top:21%;right:75%;filter:hue-rotate(210deg)}
+.universe[data-sector="1"] .planet-c{bottom:61%;left:48%;filter:hue-rotate(100deg)}
+.universe[data-sector="2"] .planet-a{top:20%;left:66%;filter:hue-rotate(170deg)}
+.universe[data-sector="2"] .planet-b{top:66%;right:65%;filter:hue-rotate(140deg)}
+.universe[data-sector="2"] .planet-c{bottom:10%;left:48%;filter:hue-rotate(200deg)}
+.universe[data-sector="3"] .planet-a{top:60%;left:8%;filter:hue-rotate(-90deg)}
+.universe[data-sector="3"] .planet-b{top:14%;right:37%;filter:hue-rotate(-45deg)}
+.universe[data-sector="3"] .planet-c{bottom:30%;left:86%;filter:hue-rotate(-50deg)}
+.universe[data-sector="4"] .planet-a{top:68%;left:70%;filter:hue-rotate(120deg)}
+.universe[data-sector="4"] .planet-b{top:24%;right:69%;filter:hue-rotate(175deg)}
+.universe[data-sector="4"] .planet-c{bottom:58%;left:30%;filter:hue-rotate(80deg)}
+.masthead{position:absolute;z-index:30;top:clamp(16px,3vw,32px);left:clamp(18px,3vw,45px);right:clamp(18px,3vw,45px);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;pointer-events:none}
+.brand{font-size:12px;letter-spacing:.22em;font-weight:700}
+.subtitle{display:block;font-size:9px;letter-spacing:.1em;color:var(--mute);margin-top:11px}
+.sector{font-size:11px;letter-spacing:.14em;text-align:right;color:var(--mute)}
+.sector strong{color:#f9f0e7;font-weight:400}
+.instructions{position:absolute;z-index:30;top:82px;left:50%;transform:translateX(-50%);text-align:center;white-space:nowrap;font-size:10px;letter-spacing:.14em;color:var(--mute);pointer-events:none}
+.instructions b{color:var(--portal1);font-weight:400;margin:0 10px}
+.portal{position:absolute;z-index:5;width:clamp(104px,13vw,185px);aspect-ratio:1;left:var(--x);top:var(--y);transform:translate(-50%,-50%);border:0;border-radius:50%;padding:0;background:none;cursor:pointer;--ring:var(--portal1);filter:drop-shadow(0 0 15px color-mix(in srgb,var(--ring),transparent 50%))}
+.portal-two{--ring:var(--portal2)}
+.portal::before{content:"";position:absolute;inset:-23%;border-radius:50%;background:radial-gradient(circle,transparent 27%,color-mix(in srgb,var(--ring),transparent 75%) 43%,transparent 66%);filter:blur(13px);animation:pulse 3.6s ease-in-out infinite}
+.portal-rings{position:absolute;inset:2%;border-radius:50%;background:radial-gradient(circle,#01010a 0 29%,transparent 32%),repeating-conic-gradient(from 10deg,transparent 0deg 12deg,color-mix(in srgb,var(--ring),transparent 7%) 16deg 24deg,transparent 29deg 40deg),conic-gradient(from 110deg,var(--ring),#100b24,#7065c1,#02020b,var(--ring));animation:spin 3.1s linear infinite}
+.portal-core{position:absolute;inset:30%;background:radial-gradient(circle at center,#000 48%,#090411 62%,#ffffff7d 74%,transparent 80%);border-radius:50%;box-shadow:0 0 3px var(--ring) inset}
+.portal-name{position:absolute;left:50%;top:112%;transform:translateX(-50%);white-space:nowrap;color:#f7f0e4;font:10px "Courier New",monospace;letter-spacing:.17em;text-shadow:0 0 12px #000}
+.portal:focus-visible{outline:2px solid white;outline-offset:10px}
+.portal:hover{filter:drop-shadow(0 0 30px var(--ring))}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{transform:scale(1.18);opacity:.6}}
+.ship{position:absolute;z-index:8;left:50%;top:50%;width:clamp(370px,50vw,690px);aspect-ratio:760/870;transform:translate(-50%,-40%);transform-origin:50% 40%;will-change:transform,opacity;pointer-events:none}
+.ship-drawing{width:100%;height:100%;overflow:visible;display:block}
+.pencil-stroke path,.beam path,.sketched-stars path{fill:none;stroke:var(--ink);stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round}
+.pencil-stroke .light-mark,.pencil-stroke .fine-outline,.sketched-stars path{stroke-width:2.1;stroke:rgba(255,251,243,.73)}
+.pencil-stroke .alien-eye{stroke-width:3.2;fill:var(--ink)}
+.pencil-stroke .alien-mouth{stroke-width:2}
+.beam-soft{stroke:rgba(205,193,255,.65)!important;stroke-width:3.6!important}
+.beam-ghost{stroke:rgba(213,196,255,.29)!important;stroke-width:2!important;stroke-dasharray:10 10}
+.career-symbol{fill:none;stroke:var(--ink)}
+.career-symbol path,.career-symbol circle,.career-symbol polygon{stroke:var(--ink);stroke-width:3.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.career-symbol text{fill:var(--ink);stroke:none;font-family:"Courier New",Courier,monospace}
+#career-floating{transform-origin:0 0}
+.milestone{position:absolute;z-index:25;bottom:100px;left:clamp(18px,3vw,45px);max-width:50vw;display:flex;align-items:baseline;gap:14px;text-shadow:0 2px 18px #000;font-size:12px;letter-spacing:.1em}
+.milestone-number{color:#bcb0ff}
+#milestone-title{color:var(--ink)}
+.endcard{position:absolute;z-index:26;bottom:91px;left:50%;width:min(760px,calc(100% - 40px));transform:translateX(-50%);text-align:center;padding:18px 24px;border:1px solid #ffffff23;border-radius:14px;background:#050711c9;backdrop-filter:blur(14px);opacity:0;pointer-events:none;transition:opacity .5s ease}
+.endcard.visible{opacity:1}
+.endcard p{margin:0;font-size:clamp(12px,1.4vw,17px);line-height:1.65}
+.endcard .signoff{margin-top:12px;font-size:10px;letter-spacing:.18em;color:var(--mute)}
+.controls{position:absolute;z-index:30;bottom:clamp(15px,3vw,26px);left:clamp(18px,3vw,45px);right:clamp(18px,3vw,45px)}
+.progress{height:2px;background:#ffffff35;overflow:hidden}.progress-inner{height:100%;width:0;background:#d7d0ff}
+.controls-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:12px}
+.controls-bottom span{font-size:9px;letter-spacing:.08em;color:var(--mute)}
+.replay{border:1px solid #ffffff65;border-radius:100px;background:#080914b0;color:white;font:11px "Courier New",monospace;letter-spacing:.07em;padding:9px 14px;cursor:pointer}.replay:hover{background:#ffffff20}
+.warp-overlay{position:absolute;z-index:20;inset:0;pointer-events:none;opacity:0;overflow:hidden}
+.warp-overlay .rings{position:absolute;left:var(--warp-x,50%);top:var(--warp-y,50%);width:180vmax;height:180vmax;border-radius:50%;transform:translate(-50%,-50%) scale(.01);background:repeating-radial-gradient(circle,transparent 0 4%,rgba(225,205,255,.32) 4.5%,transparent 5.2%,transparent 8%),conic-gradient(transparent,#c8aaff59,transparent,#92f4ff59,transparent);filter:blur(3px)}
+.universe.warping .warp-overlay{opacity:1}
+.universe.warping .rings{animation:vortex 2s ease-in-out both}
+@keyframes vortex{0%{transform:translate(-50%,-50%) scale(.02) rotate(0);opacity:.2}50%{transform:translate(-50%,-50%) scale(.65) rotate(620deg);opacity:1}100%{transform:translate(-50%,-50%) scale(.07) rotate(1080deg);opacity:0}}
+.warp-caption{position:absolute;z-index:29;left:0;right:0;top:22%;text-align:center;letter-spacing:.24em;font-size:clamp(11px,1.2vw,18px);opacity:0;transition:opacity .15s;pointer-events:none;text-shadow:0 0 24px #fff}
+.universe.warping .warp-caption{opacity:1}
+@media(max-width:750px){
+ .ship{width:clamp(360px,95vw,560px)}
+ .masthead{top:15px;left:15px;right:15px}
+ .brand{font-size:10px}.subtitle{font-size:8px}.sector{font-size:9px}
+ .instructions{top:85px;left:15px;right:15px;transform:none;white-space:normal;font-size:9px;line-height:1.5}
+ .planet-a{left:3%;top:16%}.planet-b{right:4%;top:11%}
+ .portal{width:clamp(92px,26vw,145px)}
+ .portal-name{font-size:8px}
+ .portal-one{--x:18%!important;--y:35%!important}
+ .portal-two{--x:82%!important;--y:65%!important}
+ .milestone{bottom:87px;left:15px;max-width:86%;font-size:10px;gap:8px}
+ .endcard{bottom:80px;padding:12px;width:calc(100% - 25px)}
+ .endcard p{font-size:12px;line-height:1.45}
+ .endcard .signoff{font-size:9px;margin-top:6px}
+ .controls{bottom:14px;left:15px;right:15px}
+ .controls-bottom span{max-width:65%;font-size:8px;line-height:1.45}
+ .replay{font-size:9px;padding:8px 10px}
+}
+@media(prefers-reduced-motion:reduce){
+ .portal::before,.portal-rings,.space-nebula,.universe.warping .rings{animation:none!important}
+}
+</style></head>
 <body>
-  <main class="experience">
-    <header class="masthead" aria-label="Animation title">
-      <span class="eyebrow">A SMALL EXPERIMENT IN CONNECTION</span>
-      <span class="duration">25 SEC <span aria-hidden="true">↗</span></span>
-    </header>
-
-    <section class="animation" data-sector="0" aria-label="An alien in a flying saucer collects sketches representing a creative career">
-      <div class="cosmos" aria-hidden="true">
-        <span class="planet planet-a"></span>
-        <span class="planet planet-b"></span>
-        <span class="planet planet-c"></span>
-        <span class="black-hole"></span>
-        <span class="shooting shooting-a"></span>
-        <span class="shooting shooting-b"></span>
-        <span class="star s1"></span><span class="star s2"></span><span class="star s3"></span><span class="star s4"></span><span class="star s5"></span>
-        <span class="star s6"></span><span class="star s7"></span><span class="star s8"></span><span class="star s9"></span><span class="star s10"></span>
-        <span class="star s11"></span><span class="star s12"></span><span class="star s13"></span><span class="star s14"></span><span class="star s15"></span>
-        <span class="star s16"></span><span class="star s17"></span><span class="star s18"></span><span class="star s19"></span><span class="star s20"></span>
-      </div>
-
-      <canvas id="warp-stars" class="warp-stars" aria-hidden="true"></canvas>
-      <div class="sector-glow" aria-hidden="true"></div>
-      <div id="wormhole-transition" class="wormhole-transition" aria-hidden="true"><div class="warp-rings"></div></div>
-      <button type="button" class="portal portal-one" data-jump="1" aria-label="Enter the violet black hole to warp into a new region of space">
-        <span class="portal-swirl"></span><span class="portal-center"></span><span class="portal-label">WORMHOLE 01</span>
-      </button>
-      <button type="button" class="portal portal-two" data-jump="2" aria-label="Enter the blue black hole to warp into a new region of space">
-        <span class="portal-swirl"></span><span class="portal-center"></span><span class="portal-label">WORMHOLE 02</span>
-      </button>
-      <div class="sector-indicator" id="sector-indicator" aria-live="polite">SECTOR 01 <span>/</span> THE ORIGIN</div>
-      <div class="flight-hint" id="flight-hint">MOVE TO FLY <span>✳</span> ENTER A BLACK HOLE TO WARP <span>✳</span> TAP ON MOBILE</div>
-      <div class="warp-message" id="warp-message" aria-live="polite"></div>
-
-      <div class="paper" id="paper">
-        <div class="flight-rig" id="flight-rig">
-        <svg class="sketch" viewBox="70 -120 760 870" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="svg-title svg-desc">
+<main id="universe" class="universe" data-sector="0" aria-label="Interactive creative career journey through space">
+<div class="space-nebula" aria-hidden="true"></div>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="planet planet-a" aria-hidden="true"></div><div class="planet planet-b" aria-hidden="true"></div><div class="planet planet-c" aria-hidden="true"></div>
+<header class="masthead"><div><div class="brand">A CURIOUS TRAJECTORY</div><span class="subtitle">A LITTLE ALIEN COLLECTING MANY DETOURS</span></div><div class="sector" id="sector-label">SECTOR 01 / THE ORIGIN</div></header>
+<div class="instructions">MOVE YOUR MOUSE TO FLY <b>✳</b> ENTER A BLACK HOLE TO WARP <b>✳</b> TOUCH TO STEER</div>
+<button type="button" class="portal portal-one" style="--x:19%;--y:38%" data-jump="1" aria-label="Enter violet black hole to travel to a new sector"><span class="portal-rings"></span><span class="portal-core"></span><span class="portal-name">WORMHOLE 01</span></button>
+<button type="button" class="portal portal-two" style="--x:81%;--y:65%" data-jump="2" aria-label="Enter blue black hole to travel to another sector"><span class="portal-rings"></span><span class="portal-core"></span><span class="portal-name">WORMHOLE 02</span></button>
+<div class="ship" id="ship"><svg class="ship-drawing" viewBox="70 -120 760 870" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="svg-title svg-desc">
           <title id="svg-title">The little alien who collected a career</title>
           <desc id="svg-desc">A whimsical pencil-style sketch of a UFO. Its tractor beam lifts symbols of work in tech, education, writing, film, photography, creative direction, and studies at Elisava.</desc>
           <defs>
@@ -56,14 +124,14 @@
           </defs>
 
           <g id="ship-group" aria-hidden="true">
-            <g class="beam" filter="url(#pencil-texture)">
+            <g class="beam" >
               <path class="beam-soft" d="M388 300 C386 366 359 478 327 592" />
               <path class="beam-soft" d="M510 276 C540 369 562 477 598 592" />
               <path class="beam-ghost" d="M405 308 C405 396 389 477 376 561" />
               <path class="beam-ghost" d="M487 293 C509 380 520 480 538 557" />
             </g>
 
-            <g class="sketched-stars" filter="url(#pencil-texture)">
+            <g class="sketched-stars" >
               <path class="star-sketch" d="M205 250 l9 -3 -2 -12 7 8 10 -6 -5 11 8 6 -12 0 -5 12 -3 -12 -10 -4 z" />
               <path class="star-sketch" d="M652 136 l3 -10 5 9 11 -1 -7 8 5 9 -10 -4 -8 7 2 -11 -9 -6 z" />
               <path class="small-fleck" d="M251 182 l9 -9 m-5 0 7 8" />
@@ -74,7 +142,7 @@
               <g id="career-object"></g>
             </g>
 
-            <g class="ufo" filter="url(#pencil-texture)">
+            <g class="ufo" >
               <g class="pencil-stroke">
                 <path d="M316 250 C311 203 341 144 385 119 C411 104 434 100 452 107 C496 123 513 173 514 230" />
                 <path class="light-mark" d="M334 233 C334 197 361 151 388 136" />
@@ -92,33 +160,177 @@
               </g>
             </g>
           </g>
-        </svg>
-        </div>
-
-        <div class="phase" id="phase" aria-live="polite" aria-atomic="true">
-          <span class="phase-index" id="phase-index">00 / 07</span>
-          <span class="phase-title" id="phase-title">A CURIOUS TRAJECTORY</span>
-        </div>
-      </div>
-
-      <div class="closing" id="closing" aria-live="off">
-        <p class="closing-copy" id="closing-copy"></p>
-        <p class="closing-signoff" id="closing-signoff">ELISAVA <span aria-hidden="true">✳</span> BARCELONA</p>
-      </div>
-
-      <div class="footer-controls">
-        <div class="play-progress" role="progressbar" aria-label="Animation progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track">
-          <span id="progress-fill"></span>
-        </div>
-        <div class="footer-row">
-          <span class="footnote">MOVE YOUR MOUSE / TOUCH TO STEER / ENTER BLACK HOLES TO WARP</span>
-          <button type="button" id="replay" class="replay" aria-label="Replay 25-second animation">
-            <span aria-hidden="true">↺</span> REPLAY
-          </button>
-        </div>
-      </div>
-      <p class="sr-only" id="motion-summary">A UFO collects seven career milestones: Cox Automotive, bilingual education, writing, film, photography, creative direction, and Elisava.</p>
-    </section>
-  </main>
-</body>
-</html>
+        </svg></div>
+<div class="warp-overlay" aria-hidden="true"><div class="rings"></div></div><div class="warp-caption" id="warp-caption" aria-live="polite"></div>
+<div class="milestone" id="milestone" aria-live="polite"><span class="milestone-number" id="milestone-number">00 / 07</span><span id="milestone-title">A CURIOUS TRAJECTORY</span></div>
+<div class="endcard" id="endcard"><p id="endtext"></p><div class="signoff">ELISAVA ✳ BARCELONA</div></div>
+<div class="controls"><div class="progress"><div id="progress-inner" class="progress-inner"></div></div><div class="controls-bottom"><span>25-SECOND STORY / EXPLORE AS LONG AS YOU LIKE</span><button type="button" id="replay" class="replay">↺ REPLAY STORY</button></div></div>
+</main><script>
+"use strict";
+const LENGTH=25000,INTRO=1100,STEP=2110,SUCK=1680,OUTRO=16900;
+const STATEMENT="From tech to education to creativity, my path has always been about connection. Now, through a Master’s in Applied AI for Arts and Design, I’m expanding my skills in AI and technology to help build more thoughtful creative futures.";
+const MILESTONES=[
+ ["COX AUTOMOTIVE · TECHNOLOGY","cox"],["BILINGUAL PARENT LIAISON · EDUCATION","school"],
+ ["WRITING","writing"],["FILM","film"],["PHOTOGRAPHY","camera"],["CREATIVE DIRECTION","direction"],
+ ["ELISAVA · APPLIED AI FOR ARTS AND DESIGN","elisava"]
+];
+const ICONS = {
+  cox: `<g class="career-symbol"><path d="M-52 20 L-41 2 H32 L49 20 V39 H-52 Z M-41 20 H39 M-29 2 L-18 -14 H14 L29 2"/><circle cx="-30" cy="40" r="8"/><circle cx="29" cy="40" r="8"/><text x="0" y="-22" font-size="22" font-weight="bold" text-anchor="middle">cox</text></g>`,
+  school: `<g class="career-symbol"><path d="M-49 -24 L0 -44 L49 -24 V41 H-49 Z M-61 -24 L0 -52 L61 -24 M-10 41 V6 H10 V41 M-36 -10 H-20 V4 H-36 Z M20 -10 H36 V4 H20 Z"/><path d="M-58 48 H58"/><text x="-35" y="-33" font-size="10">EN</text><text x="18" y="-33" font-size="10">ES</text></g>`,
+  writing: `<g class="career-symbol"><path d="M-43 -43 H32 L44 -31 V46 H-43 Z M32 -43 V-31 H44 M-28 -12 H24 M-28 0 H29 M-28 12 H14 M-28 24 H20"/><path d="M20 49 L53 -25 L63 -21 L30 52 L20 58 Z" transform="rotate(-16 37 10)"/></g>`,
+  film: `<g class="career-symbol"><path d="M-50 -16 H50 V43 H-50 Z M-50 -16 V-39 H50 V-16 Z M-30 -38 L-11 -16 M1 -38 L20 -16 M32 -38 L49 -19 M-27 14 H27 M-27 25 H16"/><path d="M-50 -39 L-55 -50 H42 L49 -39"/></g>`,
+  camera: `<g class="career-symbol"><path d="M-54 -25 H-31 L-22 -39 H17 L26 -25 H52 V39 H-54 Z"/><circle cx="0" cy="7" r="25"/><circle cx="0" cy="7" r="14"/><path d="M-41 -12 H-25 M34 -12 H42"/></g>`,
+  direction: `<g class="career-symbol"><path d="M-50 -45 H12 V30 H-50 Z M-37 -31 H0 M-37 -17 H-12 M-37 -3 H0 M-37 11 H-20"/><path d="M2 -10 H52 V44 H2 Z M10 9 L23 -1 L35 12 L45 4 M12 31 H40 M34 -43 L39 -28 L55 -24 L39 -20 L34 -5 L29 -20 L14 -24 L29 -28 Z"/></g>`,
+  elisava: `<g class="career-symbol"><path d="M-44 -42 H44 V42 H-44 Z M-30 -19 H30 M-30 9 H21 M-30 25 H9"/><text x="0" y="-27" font-size="12" font-weight="bold" text-anchor="middle">ELISAVA</text><path d="M50 -37 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 z"/></g>`
+};
+const root=document.getElementById("universe"),canvas=document.getElementById("starfield"),ctx=canvas.getContext("2d");
+const ship=document.getElementById("ship"),shipGroup=document.getElementById("ship-group");
+const iconRoot=document.getElementById("career-object"),floatGroup=document.getElementById("career-floating");
+const milestoneTitle=document.getElementById("milestone-title"),milestoneNumber=document.getElementById("milestone-number");
+const milestoneUI=document.getElementById("milestone"),endcard=document.getElementById("endcard"),endtext=document.getElementById("endtext");
+const progress=document.getElementById("progress-inner"),sectorLabel=document.getElementById("sector-label"),caption=document.getElementById("warp-caption");
+const replay=document.getElementById("replay"),portals=[...document.querySelectorAll(".portal")];
+const reduced=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+const sectorNames=["THE ORIGIN","VIOLET DRIFT","BLUE EXPANSE","EMBER FIELD","THE GREEN BEYOND"];
+const palettes=[[184,158,247],[255,162,222],[114,217,244],[255,178,114],[146,252,194]];
+const clamp=(v,min,max)=>Math.min(max,Math.max(min,v)),ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+let W=0,H=0,stars=[],seed=820125,sector=0;
+let shipPos={x:0,y:0},target={x:0,y:0},warp=null,cooldown=0,storyMs=0,last=0,currentSymbol=-1;
+let raf=0;
+function rand(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;}
+function newStar(randomY=true){
+ const d=.18+rand()*.82;return{x:rand()*W,y:randomY?rand()*H:-rand()*H*.18-50,depth:d,speed:235+d*1200,alpha:.25+rand()*.75,width:.6+d*1.3};
+}
+function resize(){
+ W=Math.max(1,root.clientWidth);H=Math.max(1,root.clientHeight);
+ const dpr=Math.min(2,window.devicePixelRatio||1);
+ canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
+ if(!shipPos.x){shipPos={x:W*.5,y:H*.48};target={...shipPos};}
+ stars=Array.from({length:Math.max(100,Math.min(230,Math.floor(W*H/4900)))},()=>newStar());
+}
+function drawField(dt){
+ ctx.clearRect(0,0,W,H);
+ const palette=palettes[sector],velocity=(reduced?.04:1.3)*(warp?2.7:1);
+ for(let i=0;i<stars.length;i++){
+  const s=stars[i];s.y+=s.speed*velocity*dt/1000;
+  if(s.y>H+65){stars[i]=newStar(false);continue;}
+  const len=(7+s.depth*52)*velocity;
+  ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s.x-(shipPos.x-target.x)*.08*s.depth,s.y-len);
+  ctx.lineWidth=s.width;
+  ctx.strokeStyle=(i%6===0)?`rgba(${palette[0]},${palette[1]},${palette[2]},${s.alpha})`:`rgba(246,249,255,${s.alpha})`;
+  ctx.stroke();
+ }
+}
+function setSector(n){
+ sector=n%sectorNames.length;root.dataset.sector=String(sector);
+ sectorLabel.textContent="SECTOR "+String(sector+1).padStart(2,"0")+" / "+sectorNames[sector];
+ stars=stars.map(()=>newStar());
+}
+function placeShip(x,y,rotation=0,scale=1,opacity=1){
+ const dx=x-W/2,dy=y-H/2;
+ ship.style.transform=`translate(-50%,-40%) translate(${dx.toFixed(1)}px,${dy.toFixed(1)}px) rotate(${rotation.toFixed(1)}deg) scale(${scale.toFixed(3)})`;
+ ship.style.opacity=String(opacity);
+ const wobble=warp?0:Math.sin(performance.now()/420)*5;
+ shipGroup.setAttribute("transform","translate(0 "+wobble.toFixed(1)+")");
+}
+function showMilestone(i){
+ if(i===currentSymbol)return;
+ currentSymbol=i;
+ if(i<0||i>=MILESTONES.length){iconRoot.innerHTML="";return;}
+ const [name,sym]=MILESTONES[i];
+ iconRoot.innerHTML=ICONS[sym];
+ milestoneTitle.textContent=name;milestoneNumber.textContent=String(i+1).padStart(2,"0")+" / 07";
+}
+function updateStory(){
+ progress.style.width=(storyMs/LENGTH*100).toFixed(2)+"%";
+ if(storyMs>=OUTRO){
+  iconRoot.innerHTML="";
+  milestoneUI.style.opacity="0";
+  endcard.classList.add("visible");
+  const count=clamp(Math.floor((storyMs-OUTRO)/6900*STATEMENT.length),0,STATEMENT.length);
+  endtext.textContent=STATEMENT.slice(0,count);
+  return;
+ }
+ endcard.classList.remove("visible");milestoneUI.style.opacity="1";
+ const i=Math.floor((storyMs-INTRO)/STEP);
+ if(i<0||i>=MILESTONES.length){iconRoot.innerHTML="";return;}
+ showMilestone(i);
+ const t=clamp((storyMs-(INTRO+i*STEP))/SUCK,0,1);
+ const e=ease(t),scale=1-.48*e;
+ // Translate the symbol along the fixed beam centre; scale only the symbol, not its translated parent.
+ floatGroup.setAttribute("transform","translate("+456+" "+(521-255*e).toFixed(1)+")");
+ const icon=iconRoot.querySelector(".career-symbol");
+ if(icon){
+  icon.setAttribute("transform","scale("+scale.toFixed(3)+")");
+  icon.style.opacity=String(t<.13?t/.13:t>.86?(1-t)/.14:1);
+ }
+}
+function centreOf(portal){
+ const b=portal.getBoundingClientRect(),s=root.getBoundingClientRect();
+ return{x:b.left-s.left+b.width/2,y:b.top-s.top+b.height/2,r:b.width*.39+18};
+}
+function startWarp(portal,now){
+ if(warp||now<cooldown)return;
+ const c=centreOf(portal),next=(sector+Number(portal.dataset.jump||1))%sectorNames.length;
+ warp={start:now,c,from:{...shipPos},next,changed:false,dest:{x:W*(next%2?.36:.65),y:H*(next%2?.46:.38)}};
+ root.style.setProperty("--warp-x",c.x+"px");root.style.setProperty("--warp-y",c.y+"px");
+ root.classList.remove("warping");void root.offsetWidth;root.classList.add("warping");
+ caption.textContent="SPIRALING THROUGH A WORMHOLE";
+}
+function updateWarp(now){
+ const t=clamp((now-warp.start)/2000,0,1);
+ if(t<.5){
+  const u=ease(t*2),a=u*Math.PI*4,rad=(1-u)*47;
+  const x=warp.from.x+(warp.c.x-warp.from.x)*u+Math.cos(a)*rad-rad;
+  const y=warp.from.y+(warp.c.y-warp.from.y)*u+Math.sin(a)*rad;
+  placeShip(x,y,reduced?0:u*720,reduced?1:1-.94*u,1-.73*u);
+ }else{
+  if(!warp.changed){warp.changed=true;setSector(warp.next);caption.textContent="ARRIVING / "+sectorNames[sector];}
+  const u=ease((t-.5)*2);
+  placeShip(warp.dest.x,warp.dest.y,reduced?0:(u-1)*720,reduced?1:.06+.94*u,.27+.73*u);
+ }
+ if(t>=1){
+  shipPos={...warp.dest};target={...warp.dest};warp=null;cooldown=now+1700;
+  root.classList.remove("warping");ship.style.opacity="1";
+ }
+}
+function checkPortals(now){
+ if(now<cooldown)return;
+ for(const p of portals){const c=centreOf(p);if(Math.hypot(c.x-shipPos.x,c.y-shipPos.y)<c.r){startWarp(p,now);break;}}
+}
+function frame(now){
+ if(!last)last=now;const dt=Math.min(60,Math.max(1,now-last));last=now;
+ drawField(dt);
+ if(warp){updateWarp(now);}else{
+  shipPos.x+=(target.x-shipPos.x)*.17;
+  shipPos.y+=(target.y-shipPos.y)*.17;
+  placeShip(shipPos.x,shipPos.y,clamp((target.x-shipPos.x)*.045,-8,8));
+  checkPortals(now);
+  storyMs=Math.min(LENGTH,storyMs+dt);
+ }
+ updateStory();
+ raf=requestAnimationFrame(frame);
+}
+function reset(){
+ cancelAnimationFrame(raf);sector=0;root.dataset.sector="0";setSector(0);
+ warp=null;cooldown=0;storyMs=0;last=0;currentSymbol=-1;shipPos={x:W*.5,y:H*.48};target={...shipPos};
+ milestoneTitle.textContent="A CURIOUS TRAJECTORY";milestoneNumber.textContent="00 / 07";
+ milestoneUI.style.opacity="1";endcard.classList.remove("visible");endtext.textContent="";iconRoot.innerHTML="";
+ placeShip(shipPos.x,shipPos.y);raf=requestAnimationFrame(frame);
+}
+function pointTo(e){
+ const b=root.getBoundingClientRect();
+ target={x:clamp(e.clientX-b.left,W*.05,W*.95),y:clamp(e.clientY-b.top,H*.12,H*.87)};
+}
+root.addEventListener("pointermove",e=>{if(!warp)pointTo(e);});
+root.addEventListener("pointerdown",e=>{if(e.target.closest(".replay"))return;if(!warp)pointTo(e);});
+root.addEventListener("pointerleave",()=>{});
+window.addEventListener("keydown",e=>{
+ const shifts={ArrowLeft:[-110,0],ArrowRight:[110,0],ArrowUp:[0,-95],ArrowDown:[0,95]};
+ if(shifts[e.key]){e.preventDefault();const d=shifts[e.key];target.x=clamp(target.x+d[0],W*.05,W*.95);target.y=clamp(target.y+d[1],H*.12,H*.87);}
+});
+portals.forEach(p=>p.addEventListener("click",e=>{e.stopPropagation();startWarp(p,performance.now());}));
+replay.addEventListener("click",e=>{e.stopPropagation();reset();});
+window.addEventListener("resize",()=>{resize();shipPos.x=clamp(shipPos.x,W*.05,W*.95);shipPos.y=clamp(shipPos.y,H*.12,H*.87);target={...shipPos};});
+resize();reset();
+</script></body></html>
