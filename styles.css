@@ -445,3 +445,22 @@ body { margin:0; background:#05050b; }
  .portal-swirl,.sector-glow,.portal::before,.animation.is-warping .warp-rings,.planet{animation:none!important;}
  .warp-message{transition:none;}
 }
+
+/* Distinct star systems after each wormhole crossing. */
+.animation[data-sector="1"] .planet-a{left:73%;top:12%;filter:hue-rotate(65deg);}
+.animation[data-sector="1"] .planet-b{right:72%;top:71%;filter:hue-rotate(210deg);}
+.animation[data-sector="1"] .planet-c{right:34%;bottom:13%;filter:hue-rotate(120deg);}
+.animation[data-sector="2"] .planet-a{left:55%;top:59%;filter:hue-rotate(165deg);}
+.animation[data-sector="2"] .planet-b{right:13%;top:9%;filter:hue-rotate(125deg);}
+.animation[data-sector="2"] .planet-c{right:80%;bottom:24%;filter:hue-rotate(30deg);}
+.animation[data-sector="3"] .planet-a{left:7%;top:65%;filter:hue-rotate(265deg);}
+.animation[data-sector="3"] .planet-b{right:48%;top:8%;filter:hue-rotate(-40deg);}
+.animation[data-sector="3"] .planet-c{right:9%;bottom:15%;filter:hue-rotate(-70deg);}
+.animation[data-sector="4"] .planet-a{left:75%;top:68%;filter:hue-rotate(90deg);}
+.animation[data-sector="4"] .planet-b{right:72%;top:15%;filter:hue-rotate(165deg);}
+.animation[data-sector="4"] .planet-c{right:35%;bottom:30%;filter:hue-rotate(85deg);}
+.animation[data-sector="1"] .portal-one,.animation[data-sector="3"] .portal-one{top:60%;}
+.animation[data-sector="2"] .portal-two,.animation[data-sector="4"] .portal-two{top:31%;}
+@media(max-width:750px){
+ .animation[data-sector="1"] .planet-b,.animation[data-sector="3"] .planet-b{right:66%;}
+}
