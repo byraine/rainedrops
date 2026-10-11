@@ -6,17 +6,17 @@ Build a **single-page, publishable GitHub Pages animation** that introduces a mu
 
 ## Concept
 
-A tiny, slightly strange alien pilots a flying saucer above a blank sheet of off-white paper. A pencil-outline tractor beam reaches toward the bottom of the frame. Career milestones appear as tiny individual doodles, wobble, and float upward into the UFO one after another. The same alien and saucer remain on screen the whole time, tying a seemingly nonlinear career into one narrative. After the final "ELISAVA" moment, a considered closing statement types into view. The animation ends at 25 seconds and holds on the statement until replayed.
+A tiny, slightly strange alien pilots a flying saucer through a dark, star-filled galaxy. A pencil-outline tractor beam reaches toward the bottom of the frame. Career milestones appear as tiny individual doodles, wobble, and float upward into the UFO one after another. The same alien and saucer remain on screen the whole time, tying a seemingly nonlinear career into one narrative. After the final "ELISAVA" moment, a considered closing statement types into view. The animation ends at 25 seconds and holds on the statement until replayed.
 
 ### Main visual reference
 
-The user supplied a rough black-and-white UFO drawing: simple dome, two alien eyes, skewed oval saucer, two tiny stars, and a long open-ended tractor beam, with generous white space. **Recreate that rough, childlike pencil sketch energy**; do not use a glossy 3D UFO, gradients, neon glow, polished icons, photorealism, or corporate presentation graphics. The supplied drawing is a *style reference*, not something to use as an unmodified background.
+The user supplied a rough black-and-white UFO drawing: simple dome, two alien eyes, skewed oval saucer, two tiny stars, and a long open-ended tractor beam, with generous negative space. **Recreate that rough, childlike pencil sketch energy**; do not use a glossy 3D UFO, gradients, neon glow, polished icons, photorealism, or corporate presentation graphics. The supplied drawing is a *style reference*, not something to use as an unmodified background.
 
 ## Art direction
 
-- Mostly off-white paper (#faf9f6) and dark graphite lines (#282622).
+- Deep midnight-black galaxy background, soft planetary colors, and luminous white pencil-like line drawings.
 - Hand-drawn, a little uneven, deliberately imperfect; small asymmetries are good.
-- Alien UFO hovering and gently wobbling, stars twitching occasionally, beam contours with fine uneven outlines.
+- The UFO accelerates upward while fast vertical star trails, planets, and a black hole create a feeling of flying through space; beam contours remain irregular and pencil-like.
 - Draw each object in the *same* single-color pencil language; no stock illustrations or image-generation dependency.
 - Typewriter-inspired monospaced text; minimal words while the career symbols are being lifted.
 - Portrait-friendly, but responsive for laptop and mobile screens.
@@ -47,7 +47,7 @@ The copy should feel like a personal, forward-looking statement, **not a recruit
 
 ## Page structure
 
-One clean webpage with a tiny editorial label at the top, a large central pencil animation, understated phase labels, the concluding statement below the drawing, and a small **Replay** control. No navigation, secondary pages, footers filled with links, distracting backgrounds, brand color palettes, or scroll-based animation triggers.
+One clean webpage with a tiny editorial label at the top, a large central pencil animation, understated phase labels, the concluding statement below the drawing, and a small **Replay** control. No navigation, secondary pages, or distracting interface chrome; the moving galaxy is an intentional part of the animation.
 
 ## Technical requirements
 
@@ -59,7 +59,7 @@ One clean webpage with a tiny editorial label at the top, a large central pencil
 6. Respect operating system `prefers-reduced-motion` and provide an immediately readable static message.
 7. No external fonts, image hosting, or libraries required.
 8. Maintain editable, easily identifiable milestone objects in code.
-9. Ensure the typography is readable over the off-white background.
+9. Ensure the typography and career symbols contrast clearly with the dark galaxy background.\n11. Make the spaceship steerable with pointer, touch, and arrow keys; it must visibly move across the scene.\n12. Generate animated downward star trails using a lightweight 2D canvas under the SVG foreground.\n13. Scale each career symbol around its own origin so it remains centered in the tractor beam while ascending.
 10. Provide a `README.md` with exact GitHub Pages publishing instructions and a short class-project rationale.
 
 ## Acceptance checklist
@@ -69,7 +69,7 @@ One clean webpage with a tiny editorial label at the top, a large central pencil
 - [ ] Each object rises through the same beam and disappears near the ship.
 - [ ] The final ELISAVA destination and the exact closing statement appear.
 - [ ] The statement remains readable after the approximately 25-second sequence.
-- [ ] Works with a mouse and on a touch screen; replay works.
+- [ ] UFO moves broadly in response to the mouse, touch input, or arrow keys; replay works.\n- [ ] A clearly visible fast-moving starfield communicates forward/upward flight.\n- [ ] The career symbols are genuinely visible during pickup (no inherited zero-opacity styles).
 - [ ] No browser console errors and no missing assets.
 - [ ] Loads on GitHub Pages with no build process.
 
