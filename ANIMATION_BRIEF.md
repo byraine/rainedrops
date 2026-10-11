@@ -96,3 +96,23 @@ The published GitHub Pages experience is now an edge-to-edge, single-screen gala
 - [ ] Confirm the new sector has changed colors and planet positions.
 - [ ] Verify that all seven career symbols still visibly rise into the beam.
 - [ ] Continue steering after the closing statement appears.
+
+
+## Rebuild — self-contained fullscreen GitHub Pages (October 2026)
+
+The latest published build uses **one self-contained `index.html`** with embedded CSS, JavaScript and editable SVG artwork. This avoids browser-cache mismatches between separate `styles.css` and `script.js` files. The older files may remain in the repository as archival source but are **not loaded** by the live page.
+
+### Experience and mechanics
+
+- Edge-to-edge interactive galaxy, without a boxed layout or scrollbars.
+- Original pencil-style alien UFO and all seven career symbols; each symbol rises directly up the beam to the ship.
+- Cursor/touch-controlled free flight, keyboard arrows and a replay button.
+- Fast flowing starfield, color-changing nebulae and movable planets.
+- Two accessible black holes: flying into one **or clicking it** triggers an animated two-second spiraling vortex, then places the UFO in another region of space.
+- Five visually different space sectors, with updated color palette and planet placement after a jump.
+- The career narrative lasts approximately 25 seconds excluding warp time, while exploration continues afterward.
+- Reduced-motion preferences suppress continuously spinning/decorative movement while keeping controls functional.
+
+### Testing
+
+In a simulated DOM run of the committed script, the career icon rendered, pointer steering activated a collision warp, the first warp arrived in sector 2, clicking the second portal arrived in sector 4, and the 25-second story showed the complete end message. A separate manual visual check of the live GitHub Pages deployment is still recommended.
