@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090711">
+  <meta name="theme-color" content="#05050c">
   <meta name="description" content="A 25-second, hand-drawn UFO animation tracing a career from technology to education, film, photography, creative direction, and AI in arts and design.">
   <title>A Curious Trajectory — A Career in Motion</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=4">
+  <script src="script.js?v=4" defer></script>
 </head>
 <body>
   <main class="experience">
@@ -16,7 +16,7 @@
       <span class="duration">25 SEC <span aria-hidden="true">↗</span></span>
     </header>
 
-    <section class="animation" aria-label="An alien in a flying saucer collects sketches representing a creative career">
+    <section class="animation" data-sector="0" aria-label="An alien in a flying saucer collects sketches representing a creative career">
       <div class="cosmos" aria-hidden="true">
         <span class="planet planet-a"></span>
         <span class="planet planet-b"></span>
@@ -31,8 +31,20 @@
       </div>
 
       <canvas id="warp-stars" class="warp-stars" aria-hidden="true"></canvas>
+      <div class="sector-glow" aria-hidden="true"></div>
+      <div id="wormhole-transition" class="wormhole-transition" aria-hidden="true"><div class="warp-rings"></div></div>
+      <button type="button" class="portal portal-one" data-jump="1" aria-label="Enter the violet black hole to warp into a new region of space">
+        <span class="portal-swirl"></span><span class="portal-center"></span><span class="portal-label">WORMHOLE 01</span>
+      </button>
+      <button type="button" class="portal portal-two" data-jump="2" aria-label="Enter the blue black hole to warp into a new region of space">
+        <span class="portal-swirl"></span><span class="portal-center"></span><span class="portal-label">WORMHOLE 02</span>
+      </button>
+      <div class="sector-indicator" id="sector-indicator" aria-live="polite">SECTOR 01 <span>/</span> THE ORIGIN</div>
+      <div class="flight-hint" id="flight-hint">MOVE TO FLY <span>✳</span> ENTER A BLACK HOLE TO WARP <span>✳</span> TAP ON MOBILE</div>
+      <div class="warp-message" id="warp-message" aria-live="polite"></div>
 
       <div class="paper" id="paper">
+        <div class="flight-rig" id="flight-rig">
         <svg class="sketch" viewBox="70 -120 760 870" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="svg-title svg-desc">
           <title id="svg-title">The little alien who collected a career</title>
           <desc id="svg-desc">A whimsical pencil-style sketch of a UFO. Its tractor beam lifts symbols of work in tech, education, writing, film, photography, creative direction, and studies at Elisava.</desc>
@@ -81,6 +93,7 @@
             </g>
           </g>
         </svg>
+        </div>
 
         <div class="phase" id="phase" aria-live="polite" aria-atomic="true">
           <span class="phase-index" id="phase-index">00 / 07</span>
@@ -98,7 +111,7 @@
           <span id="progress-fill"></span>
         </div>
         <div class="footer-row">
-          <span class="footnote">STEER YOUR UFO WITH YOUR MOUSE / FLY THROUGH YOUR STORY</span>
+          <span class="footnote">MOVE YOUR MOUSE / TOUCH TO STEER / ENTER BLACK HOLES TO WARP</span>
           <button type="button" id="replay" class="replay" aria-label="Replay 25-second animation">
             <span aria-hidden="true">↺</span> REPLAY
           </button>
