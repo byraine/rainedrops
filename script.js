@@ -84,7 +84,7 @@ function resizeField() {
 function drawStarfield(delta,elapsed) {
   if (!starContext) return;
   starContext.clearRect(0,0,fieldWidth,fieldHeight);
-  const boost=1.15 + .25*Math.sin(elapsed/1100);
+  const boost=(reducedMotion.matches?.08:1.4) + (warpState?1.9:0) + .25*Math.sin(elapsed/1100);
   stars.forEach((star,i) => {
     star.y += star.speed*boost*delta/1000;
     if (star.y > fieldHeight + 65) stars[i] = star = newStar(true);
@@ -92,7 +92,7 @@ function drawStarfield(delta,elapsed) {
     starContext.beginPath();
     starContext.moveTo(star.x, star.y);
     starContext.lineTo(star.x - pointer.currentX * star.depth*5, star.y - length);
-    starContext.strokeStyle = i%6===0 ? `rgba(184,162,255,${star.alpha})` : `rgba(250,248,255,${star.alpha})`;
+    starContext.strokeStyle = i%6===0 ? `rgba(${["184,162,255","245,145,217","95,211,255","252,170,113","131,244,188"][sectorNumber]},${star.alpha})` : `rgba(250,248,255,${star.alpha})`;
     starContext.lineWidth=star.size;
     starContext.stroke();
   });
@@ -230,64 +230,6 @@ function updatePointerFollow(elapsed) {
   const xShift = pointer.currentX * 118;
   const yShift = pointer.currentY * 56;
   applyShipTransform(xShift, yShift, elapsed);
-}
-
-function tick(timestamp) {
-  if (!startTime) {
-    startTime = timestamp;
-  }
-
-  const elapsed = Math.min(TOTAL_MS, timestamp - startTime);
-  const pct = Math.floor((elapsed / TOTAL_MS) * 100);
-  const delta = lastFrameTime ? Math.min(60,timestamp - lastFrameTime) : 16;
-  lastFrameTime = timestamp;
-  drawStarfield(delta,elapsed);
-  bar.style.width = `${pct}%`;
-  progress.setAttribute("aria-valuenow", String(pct));
-
-  updatePointerFollow(elapsed);
-
-  if (elapsed < OUTRO_START_MS) {
-    updateFloatingObject(elapsed);
-  }
-
-  updateOutro(elapsed);
-
-  if (elapsed < TOTAL_MS) {
-    frameId = requestAnimationFrame(tick);
-  } else {
-    copy.textContent = OUTRO_TEXT;
-    bar.style.width = "100%";
-    progress.setAttribute("aria-valuenow", "100");
-  }
-}
-
-function play() {
-  resetAnimation();
-
-  if (reducedMotion.matches) {
-    closing.classList.add("visible");
-    phase.style.opacity = "0";
-    copy.textContent = OUTRO_TEXT;
-    bar.style.width = "100%";
-    progress.setAttribute("aria-valuenow", "100");
-    return;
-  }
-
-  frameId = requestAnimationFrame(tick);
-}
-
-function handlePointerMove(event) {
-  const rect = scene.getBoundingClientRect();
-  const x = (event.clientX - rect.left) / rect.width;
-  const y = (event.clientY - rect.top) / rect.height;
-  pointer.targetX = clamp((x - 0.5) * 2, -1, 1);
-  pointer.targetY = clamp((y - 0.38) * 1.2, -1, 1);
-}
-
-function handlePointerLeave() {
-  pointer.targetX = 0;
-  pointer.targetY = 0;
 }
 
 scene.addEventListener("pointermove", handlePointerMove);
