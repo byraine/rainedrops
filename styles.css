@@ -1,1 +1,349 @@
-:root{--paper:#faf9f6;--ink:#181818;--muted:#686762}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink)}body{font-family:"Courier New",Courier,monospace}.experience{max-width:900px;margin:auto;padding:25px 24px 34px}.masthead,.footer-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.masthead{font-size:10px;letter-spacing:.15em;color:var(--muted)}.animation{position:relative}.paper{position:relative;margin:auto;width:min(100%,720px);overflow:hidden}.sketch{display:block;width:100%;height:auto;max-height:min(76vh,700px);overflow:visible}.ufo{transform-origin:450px 230px;animation:hover 3.3s ease-in-out infinite}.pencil-stroke,.sketched-stars path,.beam path{fill:none;stroke:var(--ink);stroke-linejoin:round;stroke-linecap:round}.pencil-stroke{stroke-width:3.5}.pencil-stroke .light-mark,.pencil-stroke .fine-outline{stroke-width:2}.pencil-stroke .alien-eye{stroke-width:2;fill:var(--ink)}.pencil-stroke .alien-mouth{stroke-width:1.8}.sketched-stars path{stroke-width:3}.beam{opacity:.4;transition:opacity .5s}.beam-soft{stroke-width:2.2}.beam-ghost{stroke-width:1;stroke-dasharray:10 14;opacity:.45}.star{animation:twinkle 3s ease-in-out infinite}.star-right{animation-delay:1.5s}#career-object{transform-origin:center;opacity:0}.career-symbol{stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;fill:none}.career-symbol text{stroke:none;fill:var(--ink);font-family:"Courier New",monospace}.career-symbol .filled{fill:var(--ink)}#career-object.lift{animation:lift 2.2s ease-in forwards}.phase{display:flex;justify-content:center;align-items:center;gap:16px;text-align:center;position:absolute;bottom:5%;left:0;right:0;transition:opacity .4s}.phase-index{font-size:10px;opacity:.58}.phase-title{font-size:12px;letter-spacing:.12em}.closing{display:none;max-width:670px;margin:-5px auto 22px;text-align:center;min-height:125px}.closing.visible{display:block}.closing-copy{font-size:clamp(12px,2vw,16px);line-height:1.8;margin:8px auto 17px}.closing-signoff{font-size:11px;letter-spacing:.22em}.footer-controls{max-width:670px;margin:auto}.play-progress{height:2px;background:#d7d5d0}.play-progress span{display:block;height:100%;width:0;background:var(--ink);transition:width .12s linear}.footer-row{margin-top:14px}.footnote{color:var(--muted);font-size:9px;letter-spacing:.08em}.replay{background:transparent;border:1px solid var(--ink);border-radius:0;padding:9px 13px;font:11px "Courier New",monospace;letter-spacing:.09em;cursor:pointer}.replay:hover,.replay:focus-visible{background:var(--ink);color:var(--paper)}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@keyframes hover{0%,100%{transform:translateY(0) rotate(-.5deg)}50%{transform:translateY(-7px) rotate(.5deg)}}@keyframes twinkle{0%,100%{opacity:.45}50%{opacity:1}}@keyframes lift{0%{opacity:0;transform:translate(0,60px) rotate(-8deg) scale(.72)}17%{opacity:1}65%{opacity:1}100%{opacity:0;transform:translate(-20px,-220px) rotate(16deg) scale(.23)}}@media(max-width:540px){.experience{padding:17px 12px 24px}.masthead{font-size:8px}.sketch{max-height:64vh}.phase{bottom:0;gap:10px}.phase-title{font-size:10px}.closing{margin:3px 8px 25px;min-height:160px}.footer-row{align-items:flex-end}.footnote{max-width:58%;line-height:1.6}.replay{font-size:10px}}@media(prefers-reduced-motion:reduce){.ufo,.star,#career-object.lift{animation:none!important}.beam{opacity:.2}}
+:root {
+  --bg: #07070d;
+  --bg2: #120818;
+  --ink: rgba(250, 246, 238, 0.96);
+  --ink-soft: rgba(250, 246, 238, 0.7);
+  --line-soft: rgba(255, 246, 225, 0.18);
+  --accent: rgba(177, 154, 255, 0.8);
+  --panel: rgba(9, 8, 18, 0.44);
+  --border: rgba(255, 255, 255, 0.11);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background:
+    radial-gradient(circle at 15% 15%, rgba(76, 66, 146, 0.28), transparent 24%),
+    radial-gradient(circle at 82% 23%, rgba(44, 113, 161, 0.25), transparent 22%),
+    radial-gradient(circle at 50% 60%, rgba(120, 45, 126, 0.18), transparent 30%),
+    linear-gradient(180deg, var(--bg) 0%, #080711 36%, var(--bg2) 100%);
+  color: var(--ink);
+  font-family: "Courier New", Courier, monospace;
+  overflow-x: hidden;
+}
+
+.experience {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 26px 24px 40px;
+}
+
+.masthead,
+.footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.masthead {
+  margin-bottom: 18px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+}
+
+.animation {
+  position: relative;
+  min-height: 790px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(10, 10, 20, 0.35), rgba(8, 8, 15, 0.6));
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.04);
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+}
+
+.cosmos {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 0 9px rgba(255,255,255,0.75);
+  animation: twinkle 2.8s infinite ease-in-out;
+}
+
+.star::after {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: 0;
+  width: 8px;
+  height: 1px;
+  background: rgba(255,255,255,0.3);
+}
+
+.s1{left:8%;top:12%;animation-delay:.1s}.s2{left:14%;top:35%;animation-delay:1.1s}.s3{left:18%;top:70%;animation-delay:.5s}.s4{left:25%;top:22%;animation-delay:2.1s}.s5{left:31%;top:58%;animation-delay:1.9s}
+.s6{left:38%;top:16%;animation-delay:.7s}.s7{left:43%;top:44%;animation-delay:1.6s}.s8{left:49%;top:74%;animation-delay:2.3s}.s9{left:58%;top:18%;animation-delay:.2s}.s10{left:63%;top:48%;animation-delay:2.9s}
+.s11{left:69%;top:79%;animation-delay:1.4s}.s12{left:73%;top:27%;animation-delay:.8s}.s13{left:78%;top:12%;animation-delay:2.2s}.s14{left:82%;top:61%;animation-delay:1.2s}.s15{left:88%;top:39%;animation-delay:2.5s}
+.s16{left:11%;top:53%;animation-delay:1.8s}.s17{left:22%;top:84%;animation-delay:2.7s}.s18{left:56%;top:88%;animation-delay:.3s}.s19{left:76%;top:86%;animation-delay:1s}.s20{left:92%;top:23%;animation-delay:1.5s}
+
+.planet,
+.black-hole,
+.shooting {
+  position: absolute;
+  pointer-events: none;
+}
+
+.planet-a {
+  width: 92px; height: 92px; left: 4.5%; top: 57%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(217,194,255,0.95), rgba(117,92,196,0.72) 55%, rgba(70,34,113,0.8) 100%);
+  box-shadow: 0 0 28px rgba(164, 121, 255, 0.23);
+}
+
+.planet-a::after {
+  content: ""; position: absolute; left: -20px; top: 36px; width: 132px; height: 22px;
+  border: 1px solid rgba(240, 230, 255, 0.5); border-radius: 50%; transform: rotate(-8deg);
+}
+
+.planet-b {
+  width: 58px; height: 58px; right: 8%; top: 18%; border-radius: 50%;
+  background: radial-gradient(circle at 32% 32%, rgba(255, 214, 154, 0.95), rgba(165, 90, 42, 0.78) 58%, rgba(71,33,17,0.8));
+  box-shadow: 0 0 24px rgba(255, 183, 91, 0.18);
+}
+
+.planet-c {
+  width: 28px; height: 28px; right: 20%; bottom: 18%; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(174, 223, 255, 0.95), rgba(63, 111, 180, 0.8) 60%, rgba(31,45,92,0.9));
+}
+
+.black-hole {
+  left: 74%; top: 60%; width: 118px; height: 118px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,0,0,0.98) 22%, rgba(27,13,44,0.84) 37%, rgba(145,94,255,0.24) 54%, transparent 66%);
+  box-shadow: 0 0 36px rgba(130, 74, 255, 0.15);
+}
+
+.black-hole::after {
+  content: ""; position: absolute; inset: 13px; border-radius: 50%;
+  border: 1px solid rgba(229, 208, 255, 0.26);
+  transform: scaleX(1.15) rotate(-22deg);
+}
+
+.shooting {
+  width: 90px; height: 1px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.8));
+  opacity: 0.55; transform: rotate(-24deg);
+}
+.shooting::after {
+  content: ""; position: absolute; right: 0; top: -1px; width: 3px; height: 3px; border-radius: 50%; background: white; box-shadow: 0 0 8px white;
+}
+.shooting-a { left: 62%; top: 14%; animation: drift 5s infinite ease-in-out; }
+.shooting-b { left: 16%; top: 28%; width: 65px; animation: drift 7s infinite ease-in-out reverse; opacity: 0.4; }
+
+.paper {
+  position: relative;
+  width: min(100%, 920px);
+  margin: 0 auto;
+  padding: 10px 24px 0;
+}
+
+.sketch {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ufo,
+.beam,
+#career-floating,
+.sketched-stars {
+  transform-origin: 450px 270px;
+}
+
+.pencil-stroke path,
+#career-object path,
+#career-object circle,
+#career-object rect,
+#career-object line,
+#career-object polyline,
+#career-object polygon,
+#career-object text,
+.beam path,
+.sketched-stars path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#career-object text {
+  fill: var(--ink);
+  stroke: none;
+  font-family: "Courier New", Courier, monospace;
+  letter-spacing: 0.03em;
+}
+
+#career-object .career-symbol {
+  opacity: 1;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,.22));
+}
+
+.beam-soft { stroke: rgba(255, 247, 227, 0.30) !important; stroke-width: 3.5 !important; }
+.beam-ghost { stroke: rgba(255, 247, 227, 0.17) !important; stroke-width: 2 !important; }
+.light-mark, .fine-outline, .small-fleck, .star-sketch { stroke: rgba(255, 247, 227, 0.82) !important; }
+.alien-eye, .alien-mouth { fill: none !important; stroke: var(--ink) !important; stroke-width: 4 !important; }
+
+.phase,
+.closing,
+.footer-controls {
+  position: relative;
+  z-index: 2;
+}
+
+.phase {
+  margin-top: -6px;
+  padding: 0 14px 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  transition: opacity 0.35s ease;
+}
+
+.phase-title { color: var(--ink); }
+
+.closing {
+  max-width: 760px;
+  margin: 6px auto 4px;
+  padding: 10px 34px 0;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.closing.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.closing-copy {
+  margin: 0;
+  line-height: 1.65;
+  font-size: clamp(14px, 1.8vw, 18px);
+  color: var(--ink);
+}
+
+.closing-signoff {
+  margin: 16px 0 0;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--ink-soft);
+}
+
+.footer-controls {
+  padding: 22px 26px 24px;
+}
+
+.play-progress {
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+#progress-fill {
+  display: block;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(197,186,255,0.6), rgba(255,255,255,0.95));
+  border-radius: inherit;
+}
+
+.footnote {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+}
+
+.replay {
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.05);
+  color: var(--ink);
+  padding: 10px 14px;
+  border-radius: 999px;
+  font: inherit;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.replay:hover { background: rgba(255,255,255,0.1); }
+
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+@keyframes twinkle {
+  0%,100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.55); }
+}
+
+@keyframes drift {
+  0%,100% { transform: translate(0,0) rotate(-24deg); opacity: .18; }
+  50% { transform: translate(22px, -10px) rotate(-24deg); opacity: .56; }
+}
+
+@media (max-width: 720px) {
+  .experience { padding: 18px 14px 28px; }
+  .animation { min-height: 700px; }
+  .paper { padding: 12px 10px 0; }
+  .phase { font-size: 10px; }
+  .footer-row { align-items: flex-start; flex-direction: column; }
+  .closing { padding: 12px 18px 0; }
+  .planet-a { width: 60px; height: 60px; }
+  .planet-a::after { left: -12px; top: 24px; width: 86px; }
+  .black-hole { width: 86px; height: 86px; }
+}
+/* Fast downward star trails make the little spaceship seem to climb. */
+.warp-stars {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .95;
+}
+.cosmos { z-index: 0; }
+.paper { z-index: 2; }
+.closing, .footer-controls { z-index: 3; }
+.planet { animation: planet-flow 7s linear infinite; }
+.planet-a { animation-duration: 8.5s; }
+.planet-b { animation-duration: 11s; }
+.planet-c { animation-duration: 6.5s; }
+.black-hole { animation: hole-flow 13s ease-in-out infinite; }
+@keyframes planet-flow {
+  0% { transform: translateY(-210px) scale(.88); opacity: .15; }
+  18% { opacity: .85; }
+  75% { opacity: .65; }
+  100% { transform: translateY(650px) scale(1.35); opacity: 0; }
+}
+@keyframes hole-flow {
+  0%, 100% { transform: rotate(-16deg) translateY(-38px) scale(.92); opacity: .6; }
+  50% { transform: rotate(12deg) translateY(75px) scale(1.2); opacity: 1; }
+}
+#career-object, #career-object .career-symbol { visibility: visible; }
+#career-object path, #career-object circle { stroke-width: 3.6; }
+.beam-soft { stroke: rgba(233,225,255,.48) !important; }
+.beam-ghost { stroke: rgba(220,205,255,.32) !important; }
+#career-floating { transform-origin: 0 0 !important; }
+@media (prefers-reduced-motion: reduce) {
+  .planet, .black-hole { animation: none !important; }
+}
