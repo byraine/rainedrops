@@ -76,3 +76,23 @@ One clean webpage with a tiny editorial label at the top, a large central pencil
 ## Credits and accuracy notes
 
 The project narrative and reference drawing were supplied by the project author. The "cox" illustration is a small stylized career signifier, **not the official Cox Automotive brand asset**. The milestone symbols are visual metaphors, not claims that the referenced organizations endorsed the work.
+
+## Full-screen interactive universe (revision)
+
+The published GitHub Pages experience is now an edge-to-edge, single-screen galaxy rather than a framed webpage. The original hand-drawn UFO and sequential career-symbol tractor-beam animation are preserved, with a 25-second story followed by continued free flight.
+
+- **Steering:** Move the mouse anywhere across the screen, drag/touch on mobile, or use the arrow keys to move the UFO across the viewport.
+- **Black holes:** Two accessible, visible swirling wormholes act as spatial portals. Fly into one to trigger a collision-based warp; alternatively click/tap a portal.
+- **Portal transition:** The ship spirals toward the hole, shrinks and rotates, disappears into a vortex, and then reappears elsewhere.
+- **New space regions:** Arrival updates the sector label, nebula colors, star-streak palette, and planetary layout. The five regions are The Origin, Violet Drift, Blue Expanse, Ember Field, and The Green Beyond.
+- **Animation timing:** The career-story clock pauses briefly during warp transitions so milestones are not skipped. Free flight continues after the final message.
+- **Motion accessibility:** The experience respects reduced-motion settings by suppressing spinning and reducing starfield velocity while leaving navigation functional.
+
+### Test checklist
+- [ ] Verify that the website fills the browser viewport with no surrounding card or scrollbars.
+- [ ] Move the mouse toward all four edges; the UFO should travel a large distance.
+- [ ] Fly directly into both black holes and confirm a full spiral-and-arrival sequence.
+- [ ] Click/tap each portal as an alternative to collision entry.
+- [ ] Confirm the new sector has changed colors and planet positions.
+- [ ] Verify that all seven career symbols still visibly rise into the beam.
+- [ ] Continue steering after the closing statement appears.
